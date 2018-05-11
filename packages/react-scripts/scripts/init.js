@@ -37,10 +37,14 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
+    precommit: 'pretty-quick --staged',
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
+    'test:generate-output': 'react-scripts test --json --outputFile=jest-test-results.json || true',
     eject: 'react-scripts eject',
+    storybook: 'start-storybook -p 9009 -s public',
+    'build-storybook': 'build-storybook -s public'
   };
 
   fs.writeFileSync(
