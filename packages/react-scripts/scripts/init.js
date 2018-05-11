@@ -35,16 +35,27 @@ module.exports = function(
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
+  appPackage.dependencies = Object.assign(appPackage.dependencies, {
+    '@storybook/addon-actions': '^3.4.3',
+    '@storybook/addon-info': '^3.4.3',
+    '@storybook/addon-jest': '^3.4.3',
+    '@storybook/addon-knobs': '^3.4.3',
+    '@storybook/addon-links': '^3.4.3',
+    '@storybook/react': '^3.4.3',
+    'styled-components': '^3.2.6'
+  });
+
   // Setup the script rules
   appPackage.scripts = {
     precommit: 'pretty-quick --staged',
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
-    'test:generate-output': 'react-scripts test --json --outputFile=jest-test-results.json || true',
+    'test:generate-output':
+      'react-scripts test --json --outputFile=jest-test-results.json || true',
     eject: 'react-scripts eject',
     storybook: 'start-storybook -p 9009 -s public',
-    'build-storybook': 'build-storybook -s public'
+    'build-storybook': 'build-storybook -s public',
   };
 
   fs.writeFileSync(
